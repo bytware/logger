@@ -1,15 +1,19 @@
 # @bytware/logger
 
-A structured, colorful logging utility for Node.js applications with support for module-based logging, user context, and customizable log levels.
+A structured, colorful logging utility designed for modern Node.js and Edge runtime environments, providing robust logging capabilities with zero dependencies and minimal overhead.
 
 ## Features
 
+- 🚀 Edge Runtime compatible
 - 🎨 Colorful console output
 - 📦 Module-based logging
 - 👤 User context support
 - 🔍 Multiple log levels (debug, info, warn, error)
 - ⚙️ Configurable via environment variables
 - 🎯 TypeScript support
+- 🪶 Zero dependencies
+- 🔒 Safe for sensitive environments
+- 🌐 Works in all Node.js environments
 
 ## Installation
 
