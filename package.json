@@ -11,7 +11,10 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "bump:rev": "npm run test && npm run build && pnpm version patch && npm publish",
+    "bump:minor": "npm run test && npm run build && pnpm version minor && npm publish",
+    "bump:major": "npm run test && npm run build && pnpm version major && npm publish"
   },
   "jest": {
     "preset": "ts-jest",
