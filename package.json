@@ -1,6 +1,6 @@
 {
   "name": "@bytware/logger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A structured, colorful logging utility for Node.js applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,10 @@
       "**/__tests__/**/*.test.ts"
     ],
     "collectCoverage": true,
-    "coverageReporters": ["text", "lcov"],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ],
     "coverageDirectory": "coverage"
   },
   "keywords": [
