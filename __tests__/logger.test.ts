@@ -30,7 +30,35 @@ describe('@bytware/logger', () => {
       expect(mockConsole.error).toHaveBeenCalledTimes(1);
     });
 
-    it('should respect LOG_LEVEL environment variable', () => {
+    it('should respect LOG_LEVEL=debug', () => {
+      process.env.LOG_LEVEL = 'debug';
+
+      logger.debug('Debug message');
+      logger.info('Info message');
+      logger.warn('Warning message');
+      logger.error('Error message');
+
+      expect(mockConsole.debug).toHaveBeenCalledTimes(1);
+      expect(mockConsole.log).toHaveBeenCalledTimes(1);
+      expect(mockConsole.warn).toHaveBeenCalledTimes(1);
+      expect(mockConsole.error).toHaveBeenCalledTimes(1);
+    });
+
+    it('should respect LOG_LEVEL=info', () => {
+      process.env.LOG_LEVEL = 'info';
+
+      logger.debug('Debug message');
+      logger.info('Info message');
+      logger.warn('Warning message');
+      logger.error('Error message');
+
+      expect(mockConsole.debug).not.toHaveBeenCalled();
+      expect(mockConsole.log).toHaveBeenCalledTimes(1);
+      expect(mockConsole.warn).toHaveBeenCalledTimes(1);
+      expect(mockConsole.error).toHaveBeenCalledTimes(1);
+    });
+
+    it('should respect LOG_LEVEL=warn', () => {
       process.env.LOG_LEVEL = 'warn';
 
       logger.debug('Debug message');
@@ -40,6 +68,50 @@ describe('@bytware/logger', () => {
 
       expect(mockConsole.debug).not.toHaveBeenCalled();
       expect(mockConsole.log).not.toHaveBeenCalled();
+      expect(mockConsole.warn).toHaveBeenCalledTimes(1);
+      expect(mockConsole.error).toHaveBeenCalledTimes(1);
+    });
+
+    it('should respect LOG_LEVEL=error', () => {
+      process.env.LOG_LEVEL = 'error';
+
+      logger.debug('Debug message');
+      logger.info('Info message');
+      logger.warn('Warning message');
+      logger.error('Error message');
+
+      expect(mockConsole.debug).not.toHaveBeenCalled();
+      expect(mockConsole.log).not.toHaveBeenCalled();
+      expect(mockConsole.warn).not.toHaveBeenCalled();
+      expect(mockConsole.error).toHaveBeenCalledTimes(1);
+    });
+
+    it('should convert uppercase LOG_LEVEL values to lowercase', () => {
+      // @ts-expect-error Testing runtime behavior with invalid type
+      process.env.LOG_LEVEL = 'ERROR';
+
+      logger.debug('Debug message');
+      logger.info('Info message');
+      logger.warn('Warning message');
+      logger.error('Error message');
+
+      expect(mockConsole.debug).not.toHaveBeenCalled();
+      expect(mockConsole.log).not.toHaveBeenCalled();
+      expect(mockConsole.warn).not.toHaveBeenCalled();
+      expect(mockConsole.error).toHaveBeenCalledTimes(1);
+    });
+
+    it('should default to info level for non-standard LOG_LEVEL values', () => {
+      // @ts-expect-error Testing runtime behavior with invalid type
+      process.env.LOG_LEVEL = 'invalid';
+
+      logger.debug('Debug message');
+      logger.info('Info message');
+      logger.warn('Warning message');
+      logger.error('Error message');
+
+      expect(mockConsole.debug).not.toHaveBeenCalled();
+      expect(mockConsole.log).toHaveBeenCalledTimes(1);
       expect(mockConsole.warn).toHaveBeenCalledTimes(1);
       expect(mockConsole.error).toHaveBeenCalledTimes(1);
     });

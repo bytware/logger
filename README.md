@@ -72,6 +72,10 @@ LOG_LEVEL=error # Show only errors
 [DD/MM HH:MM:SS.mmm] LEVEL [module] [userId] message data
 ```
 
+## Server-Side Only Logging
+
+For applications that need to ensure all logs are processed server-side (even when initiated from the client), see our [Server-Side Logging Guide](./docs/server-side-logging.md).
+
 ## License
 
 MIT
